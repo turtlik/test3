@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost:2022/api";
+var baseUrl = "http://localhost:8080";
 
 var http = {
     /**
