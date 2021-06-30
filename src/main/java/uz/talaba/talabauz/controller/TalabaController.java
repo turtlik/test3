@@ -52,11 +52,11 @@ public class TalabaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity deleteById(@PathVariable(name = "id") Long id) {
         if(talabaService.deleteById(id)){
-            return ResponseEntity.ok("true");
+            return ResponseEntity.noContent().build();
         }else{
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("false");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
         }
     }
     

@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface UserService {
     public List<User> getAll();
-    public User getById(Long id);
-    public User create(User user);
-    public User update(User user);
+    public User getById(Long id) throws Exception;
+    public User create(User user) throws Exception;
+    public User update(User user) throws Exception;
     public void delete(User user);
-    public boolean deleteById(Long id);
+    public void deleteById(Long id);
+
+    User loadByUsername(String username);
 }
