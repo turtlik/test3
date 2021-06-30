@@ -10,7 +10,7 @@ public interface TalabaService {
     public Talaba create(Talaba talaba);
     public Talaba update(Talaba talaba);
     public void delete(Talaba talaba);
-    public void deleteById(Long id);
+    public boolean deleteById(Long id);
 
 
 }

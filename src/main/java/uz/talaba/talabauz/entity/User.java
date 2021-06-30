@@ -1,18 +1,23 @@
 package uz.talaba.talabauz.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Talaba{
+@Table(name = "s_user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     private String ism;
     private String familiya;
-    private String sharif;
+
+
+    private String username;
+    private String password;
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -38,12 +43,19 @@ public class Talaba{
         this.familiya = familiya;
     }
 
-    public String getSharif() {
-        return sharif;
+    public String getUsername() {
+        return username;
     }
 
-    public void
-    setSharif(String sharif) {
-        this.sharif = sharif;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

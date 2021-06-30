@@ -17,7 +17,7 @@ public class TalabaServiceImpl implements TalabaService {
 
     @Override
     public List<Talaba> getAll() {
-        return talabaRepository.findAll();
+        return talabaRepository.findByOrderById();
     }
 
     @Override
@@ -56,7 +56,19 @@ public class TalabaServiceImpl implements TalabaService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        talabaRepository.deleteById(id);
+    public boolean deleteById(Long id) {
+        if(talabaRepository.existsById(id)){
+            try{
+            talabaRepository.deleteById(id);
+            return true;
+            }
+            catch(Exception e){
+                System.out.println("Error in delete operation");
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 }

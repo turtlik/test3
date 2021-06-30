@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost:8080";
+var baseUrl = "http://localhost:2020";
 
 var http = {
     /**
@@ -10,7 +10,7 @@ var http = {
         let ajax = new XMLHttpRequest();
         ajax.open("GET", baseUrl + api);
         ajax.onreadystatechange = function (){
-           if(this.readyState = 4){
+           if(this.readyState == 4){
                if(200 <= this.status && this.status < 300){
                    success(this.response);
                } else if (400<= this.status){
@@ -33,7 +33,7 @@ var http = {
         let ajax = new XMLHttpRequest()
         ajax.open("POST", baseUrl + api);
         ajax.onreadystatechange = function (){
-            if(this.readyState = 4){
+            if(this.readyState == 4){
                 if(200 <= this.status && this.status < 300){
                     success(this.response);
                 } else if (400<= this.status){
@@ -50,7 +50,7 @@ var http = {
         let ajax = new XMLHttpRequest()
         ajax.open("PUT", baseUrl + api);
         ajax.onreadystatechange = function (){
-            if(this.readyState = 4){
+            if(this.readyState == 4){
                 if(200 <= this.status && this.status < 300){
                     success(this.response);
                 } else if (400<= this.status){
@@ -67,7 +67,7 @@ var http = {
         let ajax = new XMLHttpRequest();
         ajax.open("DELETE", baseUrl + api);
         ajax.onreadystatechange = function (){
-            if(this.readyState = 4){
+            if(this.readyState == 4){
                 if(200 <= this.status && this.status < 300){
                     success(this.response);
                 } else if (400<= this.status){

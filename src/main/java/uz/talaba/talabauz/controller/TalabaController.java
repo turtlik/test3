@@ -2,6 +2,8 @@ package uz.talaba.talabauz.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.talaba.talabauz.entity.Talaba;
 import uz.talaba.talabauz.service.TalabaService;
@@ -20,6 +22,7 @@ public class TalabaController {
 
     @GetMapping
     public List<Talaba> getAll() {
+
         return talabaService.getAll();
     }
 
@@ -33,23 +36,28 @@ public class TalabaController {
     @PostMapping
     public Talaba create(@RequestBody Talaba talaba) {
 
-            return talabaService.create(talaba);
-
+        return talabaService.create(talaba);
     }
 
     @PutMapping
     public Talaba update(@RequestBody Talaba talaba) {
-       return   talabaService.update(talaba);
+
+        return   talabaService.update(talaba);
     }
 
     @DeleteMapping
     public void delete(@RequestBody Talaba talaba) {
+
         talabaService.delete(talaba);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
-        talabaService.deleteById(id);
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Object> deleteById(@PathVariable(name = "id") Long id) {
+        if(talabaService.deleteById(id)){
+            return ResponseEntity.ok("true");
+        }else{
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("false");
+        }
     }
     
     
