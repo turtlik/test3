@@ -51,7 +51,7 @@ public class TalabaController {
         talabaService.delete(talaba);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable(name = "id") Long id) {
         if(talabaService.deleteById(id)){
             return ResponseEntity.ok("true");

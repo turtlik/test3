@@ -113,6 +113,9 @@ function update(){
 function ochirish(id) {
     console.log(id);
     let x = confirm(`Siz rostdan ham ${id} - raqamli talabani o'chirmoqchimisiz?`);
-    if (x)
-        http.delete('/api/talaba/delete/' + id, null, null);
+    if (x){
+        talaba_service.deleteById(id, function(res){
+        yuklash();
+        }, function(error){ });
+       }
 }
