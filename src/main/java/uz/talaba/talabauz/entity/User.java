@@ -13,7 +13,9 @@ public class User {
     private String familiya;
 
 
+    @Column(unique = true, nullable = false, length = 30)
     private String username;
+    @Column(nullable = false)
     private String password;
 
     public User() {

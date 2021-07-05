@@ -20,6 +20,7 @@ var http = {
                }
            }
         }
+        this.setToken(ajax);
         ajax.send();
 
     },
@@ -44,6 +45,7 @@ var http = {
             }
         }
         ajax.setRequestHeader("Content-Type", "application/json");
+        this.setToken(ajax);
         ajax.send(data);
     },
     put: function(api, data, success, error){
@@ -61,6 +63,7 @@ var http = {
             }
         }
         ajax.setRequestHeader("Content-Type", "application/json");
+        this.setToken(ajax);
         ajax.send(data);
     },
     delete: function(api, success, error){
@@ -77,6 +80,13 @@ var http = {
                 }
             }
         }
+        this.setToken(ajax);
         ajax.send();
+    },
+    setToken: function(ajax){
+        let token = localStorage.getItem('token');
+        if(token)
+        ajax.setRequestHeader('Authorization', 'Bearer '+token);
     }
+
 }

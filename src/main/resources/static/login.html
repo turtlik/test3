@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form  name="login">
+    <input type="text" name="username" id="username">
+    <input type="password" name="password" id="password">
+ 
+</form>  
+<button onclick="enter()">Yuborish</button>
+<script src="./service/http_service.js"></script>
+<script src="./service/login.service.js"></script>
+<script >
+    let loginForm = document.forms['login'];
+    
+    function enter(){
+    let up = {
+        username: loginForm['username'].value,
+        password: loginForm['password'].value,
+
+    }
+    loginService.login(JSON.stringify(up), function(){
+        console.log("Kirdik");
+    }, function(){
+
+    });
+    }
+
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package uz.talaba.talabauz.serurity;
+package uz.talaba.talabauz.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +18,8 @@ public class UserProvider implements UserDetailsService {
         User u = userRepository.findByUsername(username);
         if(u != null)
         return new UserMaxsus(u.getUsername(), u.getPassword());
-        else
-            return  null;
+
+        throw new UsernameNotFoundException("Topilmadi");
 
 
     }

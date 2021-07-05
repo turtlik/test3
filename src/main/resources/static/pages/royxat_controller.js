@@ -75,7 +75,7 @@ function xatoKorsat(res) {
 
 
 function tahrirlash(id, ism, familiya, sharif) {
-    document.forms['editForm']["Id"].value = id;
+    document.forms['editForm']["id"].value = id;
     document.forms['editForm']["ism"].value = ism;
     document.forms['editForm']["familiya"].value = familiya;
     document.forms['editForm']["sharif"].value = sharif;
@@ -87,9 +87,9 @@ function tahrirlash(id, ism, familiya, sharif) {
 
 function update(){
     let id=document.forms['editForm']['id'].value;
-    let n=document.forms['createForm']['ism'].value;
-    let f=document.forms['createForm']['familiya'].value;
-    let sh=document.forms['createForm']['sharif'].value;
+    let n=document.forms['editForm']['ism'].value;
+    let f=document.forms['editForm']['familiya'].value;
+    let sh=document.forms['editForm']['sharif'].value;
     
     
     if(n){
