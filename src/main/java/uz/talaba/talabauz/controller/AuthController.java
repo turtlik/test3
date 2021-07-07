@@ -22,25 +22,26 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserProvider userDetailsService;
+    private UserProvider userProvider;
 
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserMaxsus authenticationRequest)
+    @PostMapping(value = "/authenticate")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserMaxsus userMaxsus)
             throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+                    userMaxsus.getUsername(), userMaxsus.getPassword()));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
+         UserDetails userDetails = userProvider.loadUserByUsername(userMaxsus.getUsername());
+
+         String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new Token(token));
     }
