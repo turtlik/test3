@@ -1,4 +1,4 @@
-package uz.talaba.talabauz.config;
+package uz.talaba.talabauz.security;
 
 import java.util.*;
 
@@ -32,10 +32,12 @@ public class JwtUtil {
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
         if (roles.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             claims.put("isAdmin", true);
-        }
-        if (roles.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+        } else {
             claims.put("isUser", true);
         }
+//        if (roles.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+//            claims.put("isUser", true);
+//        }
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
@@ -50,9 +52,12 @@ public class JwtUtil {
     public boolean validateToken(String authToken) {
         try {
             // Jwt token has not been tampered with
+
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken);
+
             return true;
         } catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
+            System.out.println("Noto'g'ri");
             throw new BadCredentialsException("INVALID_CREDENTIALS", ex);
         } catch (ExpiredJwtException ex) {
 //            throw new ExpiredJwtException(header, claims, "Token has Expired", ex);
@@ -72,7 +77,7 @@ public class JwtUtil {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken).getBody();
         Boolean isAdmin = claims.get("isAdmin", Boolean.class);
         Boolean isUser = claims.get("isUser", Boolean.class);
-        if (isAdmin != null && isAdmin == true) {
+        if (isAdmin != null && isAdmin) {
             roles = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         if (isUser != null && isUser == true) {

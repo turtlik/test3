@@ -49,7 +49,7 @@ public class UserMaxsus implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return Collections.EMPTY_SET;
     }
 
     @Override

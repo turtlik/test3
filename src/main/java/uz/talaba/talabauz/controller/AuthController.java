@@ -8,7 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import uz.talaba.talabauz.config.JwtUtil;
+import uz.talaba.talabauz.security.JwtUtil;
 import uz.talaba.talabauz.security.Token;
 import uz.talaba.talabauz.security.UserMaxsus;
 import uz.talaba.talabauz.security.UserProvider;

@@ -24,8 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-
-
     @Autowired
     UserProvider userProvider;
 
@@ -33,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
        auth.userDetailsService(userProvider).passwordEncoder(passwordEncoder());
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
